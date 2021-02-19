@@ -4,6 +4,8 @@ from multiprocessing.pool import ThreadPool
 from urllib.parse import urlsplit, urlunsplit, urljoin, urlparse
 from datetime import datetime
 import ssl
+from urllib.error import HTTPError
+
 
 class Crawler:
     MAX_LINKS = 50000
@@ -17,12 +19,14 @@ class Crawler:
         self.visited_links = [self.url]
         self.output = f"sitemaps/{urlparse(self.url).netloc}-sitemap.xml"
 
+        # Для возможности парсинга https.
         my_ssl = ssl.create_default_context()
         my_ssl.check_hostname = False
         my_ssl.verify_mode = ssl.CERT_NONE
 
         self.my_ssl = my_ssl
 
+    # Кравлер соответсвует протоколу последовательности - для удобства работы с классом.
     def __len__(self):
         return len(self.founded_links)
 
@@ -45,6 +49,10 @@ class Crawler:
 
             try:
                 response = urllib.request.urlopen(req, context=self.my_ssl)
+
+            except HTTPError:
+                print('Превышен лимит запросов.')
+                return self.founded_links
             except:
                 return
 
@@ -67,12 +75,10 @@ class Crawler:
                 scrap_pool.terminate()
                 scrap_pool.join()
 
-
     def run(self):
         """
         Запуска кравлера.
         """
-        print(self.threads)
         self._crawl(self.url)
         return self.founded_links
 
@@ -111,8 +117,6 @@ class Crawler:
     def normalize(url):
         """
         Нормализует полученный url.
-        :param url:
-        :return:
         """
         scheme, netloc, path, qs, anchor = urlsplit(url)
         return urlunsplit((scheme, netloc, path, qs, anchor))

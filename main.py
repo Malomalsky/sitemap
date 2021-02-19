@@ -4,14 +4,7 @@ from utils import create_sitemap_xml, make_md_table
 from datetime import datetime
 import click
 
-# c = Crawler('https://yandex.ru')
-#
-# c.run()
-#
-# create_db_and_save_links(c)
-# create_sitemap_xml(c)
-#
-# print(len(c.founded_links))
+
 
 @click.command()
 @click.option('--url', help='URL для составления sitemap.')

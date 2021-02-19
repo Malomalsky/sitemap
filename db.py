@@ -23,6 +23,7 @@ def create_db_and_save_links(crawler):
     """
     Создает базу sqlite и записывает в нее все линки кравлера.\n
     Если линк уже записан в БД - обновляет время записи.
+
     :param crawler:
     :return:
     """

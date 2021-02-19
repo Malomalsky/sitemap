@@ -8,6 +8,12 @@ MARKDOWN_TEMPLATE = "| {0} | {1} | {2} | {3} | {4} |"
 
 
 def create_sitemap_xml(crawler):
+    """
+    Создание sitemap.xml.
+
+    :param crawler: Инстанс кравлера.
+    :return: sitemaps/URL-sitemap.xml.
+    """
     print(f"\nСоздание {crawler.output}...")
     with open(
             f'{crawler.output}',
@@ -29,11 +35,16 @@ def create_sitemap_xml(crawler):
 
 def make_md_table(crawler, time):
     """
-    Создание markdown-таблицы для записи результатов.
+    Создание markdown-таблицы после кравлинга.
+
+    :param crawler: Инстанс кравлера
+    :param time: Время работы скрипта
+    :return: Записанные результаты в table.md
     """
     if os.path.exists('table.md'):
+        print('\nРезультаты записаны в table.md.')
         with open('table.md', 'a') as f:
-            f.write(MARKDOWN_TEMPLATE.format(
+            f.write('\n'+MARKDOWN_TEMPLATE.format(
                 crawler.url,
                 crawler.threads,
                 time,
