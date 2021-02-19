@@ -38,6 +38,9 @@ Options:
 python main.py --url=https://google.com --threads=10 -d
 ```
 
+Результаты работы записываются в [table.md](https://github.com/Malomalsky/sitemap/blob/master/table.md). В таблице лежат запрашиваемые в тестовом задании значения. 
+Сам файл sitemap - в директории [sitemaps](https://github.com/Malomalsky/sitemap/tree/master/sitemaps)
+
 --- 
 ## Пояснения 
 
@@ -69,3 +72,6 @@ python main.py --url=https://google.com --threads=10 -d
 
 ### crawler-test
 Во время парсинга http://crawler-test.com/ сайт начинает генерировать бесконечные рекурсивные страницы со списком таких же случайных страниц. Для их исключения было захардкожено условие с пропуском ссылок с поддоменом '/infinite/'.  
+
+### Результаты google. 
+По таблице можно заметить, что результаты гугла различаются. Это - последствия запуска скрипта с локальной машины и с repl.it. Локальную машину гугл быстро ограничивает в реквестах. 
