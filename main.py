@@ -1,9 +1,8 @@
-from crawler import *
-from db import *
-from utils import create_sitemap_xml, make_md_table
+from sitemap.crawler import *
+from sitemap.db import *
+from sitemap.utils import create_sitemap_xml, make_md_table
 from datetime import datetime
 import click
-
 
 
 @click.command()

@@ -17,7 +17,7 @@ class Crawler:
         self.silence = silence
         self.founded_links = []
         self.visited_links = [self.url]
-        self.output = f"sitemaps/{urlparse(self.url).netloc}-sitemap.xml"
+        self.output = f"../sitemaps/{urlparse(self.url).netloc}-sitemap.xml"
 
         # Для возможности парсинга https.
         my_ssl = ssl.create_default_context()
