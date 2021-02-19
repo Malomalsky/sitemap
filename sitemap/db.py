@@ -1,12 +1,13 @@
 from datetime import datetime
 from urllib.parse import urljoin
+
 from peewee import (
+    CharField, 
+    DateTimeField, 
+    IntegrityError, 
     Model,
-    CharField,
-    DateTimeField,
-    IntegrityError,
-    SqliteDatabase,
-)
+    SqliteDatabase
+    )
 
 db = SqliteDatabase('sitemap.db')
 

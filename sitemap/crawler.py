@@ -1,10 +1,10 @@
 import re
-import urllib.request
-from multiprocessing.pool import ThreadPool
-from urllib.parse import urlsplit, urlunsplit, urljoin, urlparse
-from datetime import datetime
 import ssl
+import urllib.request
+from datetime import datetime
+from multiprocessing.pool import ThreadPool
 from urllib.error import HTTPError
+from urllib.parse import urljoin, urlparse, urlsplit, urlunsplit
 
 
 class Crawler:
