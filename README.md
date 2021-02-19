@@ -44,9 +44,9 @@ python main.py --url=https://google.com --threads=10 -d
 --- 
 ## Пояснения 
 
-* Файл [crawler.py](https://github.com/Malomalsky/sitemap/blob/master/crawler.py) содержит класс Crawler. 
-* Файл [db.py](https://github.com/Malomalsky/sitemap/blob/master/db.py) содержит логику работы с базой даных. В качестве интерфейса был выбран peewee - Django-like ORM.
-* Файл [utils.py](https://github.com/Malomalsky/sitemap/blob/master/utils.py) содержит дополнительные функции - создание sitemap.xml и markdown-таблицы с результатами. 
+* Файл [crawler.py](https://github.com/Malomalsky/sitemap/blob/master/sitemap/crawler.py) содержит класс Crawler. 
+* Файл [db.py](https://github.com/Malomalsky/sitemap/blob/master/sitemap/db.py) содержит логику работы с базой даных. В качестве интерфейса был выбран peewee - Django-like ORM.
+* Файл [utils.py](https://github.com/Malomalsky/sitemap/blob/master/sitemap/utils.py) содержит дополнительные функции - создание sitemap.xml и markdown-таблицы с результатами. 
 
 ## Сложности и доработки
 
@@ -78,3 +78,6 @@ Stackoverflow пришлось парсить без многопоточнос�
 
 ### Валидация
 Все полученные sitemap были провалидированы с помощью [Яндекс.Вебмастера](https://webmaster.yandex.ru/tools/sitemap/)
+
+### Проблемы ORM 
+ORM - слишком медленная. Запись URL с того же гугла занимает секунд 10. В будущем лучше пересмотреть работу с базой. 
