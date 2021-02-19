@@ -42,7 +42,7 @@ python main.py --url=https://google.com --threads=10 -d
 ## Пояснения 
 
 * Файл [crawler.py](https://github.com/Malomalsky/sitemap/blob/master/crawler.py) содержит класс Crawler. 
-* Файл [db.py](https://github.com/Malomalsky/sitemap/blob/master/db.py) содержит логику работы с базой даных. В качестве интерфейса был выбран peewee - Django-like OR<.
+* Файл [db.py](https://github.com/Malomalsky/sitemap/blob/master/db.py) содержит логику работы с базой даных. В качестве интерфейса был выбран peewee - Django-like ORM.
 * Файл [utils.py](https://github.com/Malomalsky/sitemap/blob/master/utils.py) содержит дополнительные функции - создание sitemap.xml и markdown-таблицы с результатами. 
 
 ## Сложности и доработки
@@ -66,3 +66,6 @@ python main.py --url=https://google.com --threads=10 -d
 
 ### Мнопоточность и многопроцессорность. 
 Я знаю, что сейчас скрипт бесконечно и рекурсивно плодит потоки, и я знаю что это плохо. Выходом я вижу использование ассинхронности, но ее в тестовом задании заявлено не было. 
+
+### crawler-test
+Во время парсинга http://crawler-test.com/ сайт начинает генерировать бесконечные рекурсивные страницы со списком таких же случайных страниц. Для их исключения было захардкожено условие с пропуском ссылок с поддоменом '/infinite/'.  
