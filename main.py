@@ -1,6 +1,6 @@
 from crawler import *
 from db import *
-from utils import create_sitemap_xml
+from utils import create_sitemap_xml, make_md_table
 from datetime import datetime
 import click
 
@@ -17,10 +17,9 @@ import click
 @click.option('--url', help='URL для составления sitemap.')
 @click.option('--threads', default=5, help='Количество потоков.')
 @click.option('--db', '-d', is_flag=True, help='Запись в базу данных.')
-@click.option('--o', default='sitemaps/sitemap.xml', help='Имя файла с sitemap.')
 @click.option('--s', '-s', is_flag=False,  help='Отключить уведомления в консоли. ')
-def main(url, threads, s, db, o):
-    crawler = Crawler(url=url, silence=s, output=o, threads=threads)
+def main(url, threads, s, db):
+    crawler = Crawler(url=url, silence=s, threads=threads)
     start_time = datetime.now()
     crawler.run()
     end_time = datetime.now()
@@ -29,6 +28,7 @@ def main(url, threads, s, db, o):
     print(f'\nПарсинг занял {runtime}')
 
     create_sitemap_xml(crawler)
+    make_md_table(crawler, runtime)
 
     if db:
         create_db_and_save_links(crawler)

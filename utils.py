@@ -3,14 +3,14 @@ import os
 
 XML_HEAD_TEMPLATE = '<?xml version="1.0" encoding="UTF-8"?>\n\t<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
 XML_ROW_TEMPLATE = "\n\t\t<url>\n\t\t\t<loc>\n\t\t\t\t{0}/\n\t\t\t</loc>\n\t\t</url>"
-MARKDOWN_TEMPLATE = " {} | {} | {} | {} | {} "
+MARKDOWN_TEMPLATE = "| {0} | {1} | {2} | {3} | {4} |"
 
 
 
 def create_sitemap_xml(crawler):
     print(f"\nСоздание {crawler.output}...")
     with open(
-            urlsplit(crawler.url).netloc + '-' + crawler.output,
+            f'{crawler.output}',
             'w'
     ) as file:
         file.write(XML_HEAD_TEMPLATE)
@@ -28,9 +28,23 @@ def create_sitemap_xml(crawler):
 
 
 def make_md_table(crawler, time):
-    sitemap_name = f""
+    """
+    Создание markdown-таблицы для записи результатов.
+    """
     if os.path.exists('table.md'):
         with open('table.md', 'a') as f:
+            f.write(MARKDOWN_TEMPLATE.format(
+                crawler.url,
+                crawler.threads,
+                time,
+                len(crawler),
+                crawler.output
+                )
+            )
+    else: 
+        with open('table.md', 'w') as f: 
+            f.write("| URL | Threads | Time | URL qty | File path |\n")
+            f.write("| --- | ------- | ---- | ------- | --------- |\n ")
             f.write(MARKDOWN_TEMPLATE.format(
                 crawler.url,
                 crawler.threads,

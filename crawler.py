@@ -8,14 +8,14 @@ import ssl
 class Crawler:
     MAX_LINKS = 50000
 
-    def __init__(self, url,  threads, silence=False, output='sitemap.xml', ):
+    def __init__(self, url,  threads, silence=False):
         self.url = self.normalize(url)
         self.host = urlparse(self.url).netloc
         self.threads = threads
         self.silence = silence
         self.founded_links = []
         self.visited_links = [self.url]
-        self.output = output
+        self.output = f"sitemaps/{urlparse(self.url).netloc}-sitemap.xml"
 
         my_ssl = ssl.create_default_context()
         my_ssl.check_hostname = False
