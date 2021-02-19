@@ -60,7 +60,7 @@ python main.py --url=https://google.com --threads=10 -d
 ![stack](https://raw.githubusercontent.com/Malomalsky/knowledge_base/master/g-book/stackoverflow.PNG?token=AGSNIZ6YTM6FF3VP7RTSGITAHDECI)
 
 Решается это проксированием трафика. 
-Кстати, из-за этого составить полную карту stackoverflow не вышло. 
+Stackoverflow пришлось парсить без многопоточности. 
 
 ### Яндекс и избыточность
 В яндексе неимоверно много ссылок! На тот момент, когда я остановил скрипт, значение найденных ссылок превышало 270000, а время работы скрипта - 40 минут. 
